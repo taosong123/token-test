@@ -4,6 +4,8 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ts.tokentest.entity.User;
 import com.ts.tokentest.service.UserService;
 import com.ts.tokentest.utils.JwtUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+
+@Api(tags="控制器")
 @RestController
 public class UserController {
 
@@ -19,6 +23,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/login")
+    @ApiOperation(value = "登录")
     public String  login(User user) {
 
         //获取用户信息
@@ -34,6 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/verify")
+    @ApiOperation(value = "验证")
     //有拦截器后，去掉参数String token
     public Map verify() {
 //        //验证token是否合法，并返回解码后的token
